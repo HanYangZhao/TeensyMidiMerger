@@ -28,7 +28,7 @@ midi::MidiType mtype;
 void sendToComputer(byte type, byte data1, byte data2, byte channel, const uint8_t *sysexarray, byte cable);
 
 void setup() {
-  Serial.begin(115200);
+  //Serial.begin(115200);
   pinMode(13, OUTPUT); // LED pin
   digitalWrite(13, LOW);
   MIDI1.begin(MIDI_CHANNEL_OMNI);
@@ -76,22 +76,22 @@ void loop() {
       const uint8_t *sys = midilist[port]->getSysExArray();
       activity = true;
       sendToComputer(type, data1, data2, channel, sys, 0);
-      mtype = (midi::MidiType)type;
-      MIDI1.send(mtype, data1, data2, channel);
       if(channel == 13 || channel == 16){
         uint8_t type = 176;
         mtype = (midi::MidiType)type;
-        MIDI1.send(mtype, 29, data2, channel);
+        MIDI1.send(mtype, 41, data2, channel);
       }
-      Serial.print("type ");
-      Serial.print(type);
-      Serial.print(", data1 ");
-      Serial.print(data1);
-      Serial.print(", data2 ");
-      Serial.print(data2);
-      Serial.print(", channel ");
-      Serial.print(channel);
-      Serial.println();
+      mtype = (midi::MidiType)type;
+      MIDI1.send(mtype, data1, data2, channel);
+//      Serial.print("type ");
+//      Serial.print(type);
+//      Serial.print(", data1 ");
+//      Serial.print(data1);
+//      Serial.print(", data2 ");
+//      Serial.print(data2);
+//      Serial.print(", channel ");
+//      Serial.print(channel);
+//      Serial.println();
     }
   }
 
