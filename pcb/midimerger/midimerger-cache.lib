@@ -170,24 +170,11 @@ X VCC 8 300 200 100 L 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# power_GND
+# midimerger-rescue_Teensy3.6-teensy
 #
-DEF power_GND #PWR 0 0 Y Y 1 F P
-F0 "#PWR" 0 -250 50 H I C CNN
-F1 "power_GND" 0 -150 50 H V C CNN
-F2 "" 0 0 50 H I C CNN
-F3 "" 0 0 50 H I C CNN
-DRAW
-P 6 0 1 0 0 0 0 -50 50 -50 0 -100 -50 -50 0 -50 N
-X GND 1 0 0 0 D 50 50 1 1 W N
-ENDDRAW
-ENDDEF
-#
-# teensy_Teensy3.6
-#
-DEF teensy_Teensy3.6 U 0 40 Y Y 1 F N
+DEF midimerger-rescue_Teensy3.6-teensy U 0 40 Y Y 1 F N
 F0 "U" 0 2300 60 H V C CNN
-F1 "teensy_Teensy3.6" 0 -2300 60 H V C CNN
+F1 "midimerger-rescue_Teensy3.6-teensy" 0 -2300 60 H V C CNN
 F2 "" -250 0 60 H V C CNN
 F3 "" -250 0 60 H V C CNN
 DRAW
@@ -299,6 +286,19 @@ X 55 84 1200 1900 200 L 50 50 1 1 B
 X 56_SDA3 85 1200 2000 200 L 50 50 1 1 B
 X 57_SCL3 86 1200 2100 200 L 50 50 1 1 B
 X 7_PWM_RX3_mosi0_scl0 9 -1200 1300 200 R 50 50 1 1 B
+ENDDRAW
+ENDDEF
+#
+# power_GND
+#
+DEF power_GND #PWR 0 0 Y Y 1 F P
+F0 "#PWR" 0 -250 50 H I C CNN
+F1 "power_GND" 0 -150 50 H V C CNN
+F2 "" 0 0 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
+DRAW
+P 6 0 1 0 0 0 0 -50 50 -50 0 -100 -50 -50 0 -50 N
+X GND 1 0 0 0 D 50 50 1 1 W N
 ENDDRAW
 ENDDEF
 #

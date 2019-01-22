@@ -15,7 +15,7 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Comp
-L teensy:Teensy3.6 U1
+L midimerger-rescue:Teensy3.6-teensy U1
 U 1 1 5C3FEA3C
 P 3150 3950
 F 0 "U1" H 3150 6337 60  0000 C CNN
@@ -333,4 +333,26 @@ $EndComp
 Connection ~ 6450 5300
 Wire Wire Line
 	6450 5300 6450 5600
+$Comp
+L power:GND #PWR?
+U 1 1 5C4457FD
+P 1950 4450
+F 0 "#PWR?" H 1950 4200 50  0001 C CNN
+F 1 "GND" V 1955 4322 50  0000 R CNN
+F 2 "" H 1950 4450 50  0001 C CNN
+F 3 "" H 1950 4450 50  0001 C CNN
+	1    1950 4450
+	0    1    1    0   
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 5C4463B2
+P -9100 -4000
+F 0 "#PWR?" H -9100 -4250 50  0001 C CNN
+F 1 "GND" V -9095 -4128 50  0000 R CNN
+F 2 "" H -9100 -4000 50  0001 C CNN
+F 3 "" H -9100 -4000 50  0001 C CNN
+	1    -9100 -4000
+	0    -1   -1   0   
+$EndComp
 $EndSCHEMATC
