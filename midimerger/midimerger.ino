@@ -75,23 +75,25 @@ void loop() {
       uint8_t channel =    midilist[port]->getChannel();
       const uint8_t *sys = midilist[port]->getSysExArray();
       activity = true;
-      sendToComputer(type, data1, data2, channel, sys, 0);
-      if(channel == 13 || channel == 16){
-        uint8_t type = 176;
+      if (type != 250 && type != 251 & type != 252 ){
+        sendToComputer(type, data1, data2, channel, sys, 0);
+        if(channel == 13 || channel == 16){
+          uint8_t type = 176;
+          mtype = (midi::MidiType)type;
+          MIDI1.send(mtype, 41, data2, channel);
+        }
         mtype = (midi::MidiType)type;
-        MIDI1.send(mtype, 41, data2, channel);
+        MIDI1.send(mtype, data1, data2, channel);
+//              Serial.print("type ");
+//              Serial.print(type);
+//              Serial.print(", data1 ");
+//              Serial.print(data1);
+//              Serial.print(", data2 ");
+//              Serial.print(data2);
+//              Serial.print(", channel ");
+//              Serial.print(channel);
+//              Serial.println();
       }
-      mtype = (midi::MidiType)type;
-      MIDI1.send(mtype, data1, data2, channel);
-//      Serial.print("type ");
-//      Serial.print(type);
-//      Serial.print(", data1 ");
-//      Serial.print(data1);
-//      Serial.print(", data2 ");
-//      Serial.print(data2);
-//      Serial.print(", channel ");
-//      Serial.print(channel);
-//      Serial.println();
     }
   }
 
