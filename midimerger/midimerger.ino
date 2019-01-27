@@ -2,7 +2,7 @@
 #include <USBHost_t36.h> // access to USB MIDI devices (plugged into 2nd USB port)
 
 // Create the Serial MIDI ports
-MIDI_CREATE_INSTANCE(HardwareSerial, Serial2, MIDI1);
+MIDI_CREATE_INSTANCE(HardwareSerial, Serial1, MIDI1);
 
 // Create the ports for USB devices plugged into Teensy's 2nd USB port (via hubs)
 USBHost myusb;
@@ -43,6 +43,23 @@ void setup() {
 
 void loop() {
   activity = false;
+  if (MIDI1.read()){
+    byte type = MIDI1.getType();
+    byte channel = MIDI1.getChannel();
+    byte data1 = MIDI1.getData1();
+    byte data2 = MIDI1.getData2();
+    if (type !=  midi::SystemExclusive) {
+      // Normal messages, first we must convert usbMIDI's type (an ordinary
+      // byte) to the MIDI library's special MidiType.
+      mtype = (midi::MidiType)type;
+      MIDI1.send(mtype, data1, data2, channel);
+    } else {
+      // SysEx messages are special.  The message length is given in data1 & data2
+      unsigned int SysExLength = data1 + data2 * 256;
+      MIDI1.sendSysEx(SysExLength, MIDI1.getSysExArray(), true);
+    }
+    activity = true;
+  }
   if (usbMIDI.read()) {
     // get the USB MIDI message, defined by these 5 numbers (except SysEX)
     byte type = usbMIDI.getType();
@@ -51,7 +68,7 @@ void loop() {
     byte data2 = usbMIDI.getData2();
     //byte cable = usbMIDI.getCable();
 
-    // forward this message to 1 of the 3 Serial MIDI OUT ports
+    // forward this message to the Serial MIDI OUT ports
     if (type != usbMIDI.SystemExclusive) {
       // Normal messages, first we must convert usbMIDI's type (an ordinary
       // byte) to the MIDI library's special MidiType.
@@ -75,7 +92,8 @@ void loop() {
       uint8_t channel =    midilist[port]->getChannel();
       const uint8_t *sys = midilist[port]->getSysExArray();
       activity = true;
-      if (type != 250 && type != 251 && type != 252 ){
+      if (type !=  midi::SystemExclusive){
+      //if (type != 250 && type != 251 && type != 252 ){
         sendToComputer(type, data1, data2, channel, sys, 0);
         if(channel == 13 || channel == 16){
           uint8_t type = 176;
