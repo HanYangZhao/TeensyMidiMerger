@@ -93,7 +93,7 @@ void loop() {
       const uint8_t *sys = midilist[port]->getSysExArray();
       activity = true;
       if (type !=  midi::SystemExclusive){
-      //if (type != 250 && type != 251 && type != 252 ){
+      // if (type != 250 && type != 251 && type != 252 ){
         sendToComputer(type, data1, data2, channel, sys, 0);
         if(channel == 13 || channel == 16){
           uint8_t type = 176;
