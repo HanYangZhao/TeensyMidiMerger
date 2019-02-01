@@ -15,7 +15,7 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Comp
-L midimerger-rescue:Teensy3.6-teensy U1
+L midimerger-rescue:Teensy3.6-teensy-midimerger-rescue U1
 U 1 1 5C3FEA3C
 P 3150 3950
 F 0 "U1" H 3150 6337 60  0000 C CNN
@@ -240,7 +240,7 @@ F 3 "~" H 7050 5000 50  0001 C CNN
 	0    -1   -1   0   
 $EndComp
 Wire Wire Line
-	6750 5000 6950 5000
+	6750 5000 6850 5000
 Wire Wire Line
 	7150 5000 7200 5000
 $Comp
@@ -373,6 +373,13 @@ Text Label 4450 5350 0    50   ~ 0
 3.3V
 Wire Wire Line
 	6750 5300 7000 5300
-Text Label 6850 5300 3    50   ~ 0
+Text Label 7000 5300 0    50   ~ 0
 3.3V
+Wire Wire Line
+	7000 5200 6850 5200
+Wire Wire Line
+	6850 5200 6850 5000
+Connection ~ 6850 5000
+Wire Wire Line
+	6850 5000 6950 5000
 $EndSCHEMATC
